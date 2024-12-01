@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List</title>
+</head>
+<body>
+    <h1>To-do List</h1>
+    <h3>Add your items here</h3>
+    <form id="myform">
+        <input id="myinput" type="text">
+        <button type="submit">ADD</button>
+    </form>
+    <h3>To-do List</h3>
+    <ul id="myitem"></ul>
+    <script>
+        var myform = document.getElementById("myform");
+        var myinput = document.getElementById("myinput");
+        var myitem = document.getElementById("myitem");
+
+        myform.addEventListener("submit", function(event){
+            event.preventDefault();
+            createItem(myinput.value);
+        });
+
+        function createItem(inputItem){
+            var items = `<li>${inputItem}<button onclick="deleteElement(this)">Delete</button></li>`;
+            myitem.insertAdjacentHTML("beforeend", items);
+            myinput.value = "";
+            myinput.focus();
+        }
+
+        function deleteElement(elementToDelete){
+            elementToDelete.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
